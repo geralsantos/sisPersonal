@@ -70,19 +70,19 @@ if(!$mail->send()) {
   //Todo ok se registra y email enviado :v
 
 
-  $insert = $db->__construct()->prepare("INSERT INTO usuario VALUES(DEFAULT,:user,:pass,:email,'Inactivo','Usuario','$keyreg')");
+  $insert = $db->__construct()->prepare("INSERT INTO users VALUES(DEFAULT,:user,:pass,:email,0,0,'$keyreg','','',0,'')");
   $insert->bindParam(':user',$user);
   $insert->bindParam(':pass',$pass);
   $insert->bindParam(':email',$email);
   $insert->execute();
 
-  $sql_2 = $db->__construct()->prepare("SELECT idusuario FROM usuario WHERE usuario=:user and contrasena=:pass ");
+  $sql_2 = $db->__construct()->prepare("SELECT id FROM users WHERE user=:user and pass=:pass ");
   $sql_2->bindParam(':user',$user);
   $sql_2->bindParam(':pass',$pass);
   $sql_2->execute();
 
   $result2 = $sql_2->fetch(PDO::FETCH_ASSOC);
-  $_SESSION['app_id'] = $result2['idusuario'];
+  $_SESSION['app_id'] = $result2['id'];
   $db = null;
   $ECHO = 1;
 }

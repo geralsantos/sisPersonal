@@ -30,11 +30,16 @@ function usuarios(){
           foreach ($keys as $key)
           $usuarios[$row['id']] = array(
             'id' =>  $row['id'],
-            'usuario' => $row['user'],
-             'contrasena'=> $row['pass'],
+            'user' => $row['user'],
+             'pass'=> $row['pass'],
                  'email'=> $row['email'],
-                'estado' => $row['permisos'],
-                'tipo'=> $row['activo']
+                'permisos' => $row['permisos'],
+                'activo'=> $row['activo'],
+                'keyreg'=> $row['keyreg'],
+                'keypass'=> $row['keypass'],
+                'new_pass'=> $row['new_pass'],
+                'ultima_conexion'=> $row['ultima_conexion'],
+                'no_leidos'=> $row['no_leidos']
 
             );
         }
