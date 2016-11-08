@@ -1,6 +1,6 @@
 <?php
 //if ( isset($_SESSION['app_id']) or isset($_COOKIE['mypage_log']))
-
+ 
 if(( isset($_SESSION['app_id']) or isset($_COOKIE['mypage_log']) ))
 {
 

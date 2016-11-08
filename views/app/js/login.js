@@ -15,7 +15,7 @@ function StartLogin(){
     connect.onreadystatechange=function(){
         if (connect.readyState==4 && connect.status==200){
             if(connect.responseText == 1){
-                 result = "<div class='alert alert-dismissible alert-warning'> <button type='button' class='close' data-dismiss='alert'>&times;</button> <h4>Information!</h4> <p>Estamos redireccionandote, <a href='#' class='alert-link'></a>.</p>   </div>" ;
+                 result = "<div class='alert alert-dismissible alert-success'> <button type='button' class='close' data-dismiss='alert'>&times;</button> <h4>Satisfactorio!</h4> <p>Estamos redireccionandote, <a href='#' class='alert-link'></a>.</p>   </div>" ;
 
             __('_ajax_login_').innerHTML = result;
 
@@ -26,7 +26,7 @@ function StartLogin(){
 
             }
         }else if (connect.readyState != 4){
-          result = "<div class='alert alert-dismissible alert-warning'> <button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Information!</h4> <p>Logeando..., <a href='#' class='alert-link'></a>.</p>   </div>";
+          result = "<div class='alert alert-dismissible alert-info'> <button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Información!</h4> <p>Redireccionando..., <a href='#' class='alert-link'></a>.</p>   </div>";
 
             __('_ajax_login_').innerHTML = result;
 

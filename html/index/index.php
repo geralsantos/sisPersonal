@@ -1,6 +1,7 @@
 <?php
 //if(!( isset($_SESSION['app_id']) or isset($_COOKIE['mypage_log']) or $usu[$_SESSION['app_id']] ))
 //or ($usu[$_COOKIE['mypage_log']])==""
+
 if(!( isset($_SESSION['app_id']) or isset($_COOKIE['mypage_log'])))
 {
 header('location: index.php?view='. md5('login').'');
@@ -263,7 +264,7 @@ else
       <!--Fin-Contenido-->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-        
+
         </div>
        </footer>
 

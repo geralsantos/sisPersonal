@@ -38,7 +38,7 @@ html,body {
 
 .login {
   max-width: 280px;
-  min-height: 80%;
+  min-height: 70%;
   margin: 5% auto;
   background-color: rgba(10,10,10,.68);
 }

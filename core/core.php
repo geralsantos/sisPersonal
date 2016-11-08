@@ -14,7 +14,7 @@ define('HTML_DIR','html/');
 define('VIEWS_DIR','views/');
 define('FONTS_DIR','fonts/');
 define('PUBLIC_DIR','public/');
-define('APP_URL','http://localhost/sisPersonal/');
+//define('APP_URL','http://localhost/sisPersonal/');
 
 //PHPMailer smtp.gmail.com
 define('PHPMAILER_HOST','smtp-mail.outlook.com');
