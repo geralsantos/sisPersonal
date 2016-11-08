@@ -7,6 +7,7 @@ function Encrypt ($string){
 
         $str .= ($i % 2)!=0 ? md5($string[$i]) : $i;
     }
+
     return md5($str);
 
 }

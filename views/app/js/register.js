@@ -19,8 +19,7 @@ function StartReg(){
             connect.onreadystatechange = function(){
                 if (connect.readyState == 4 && connect.status == 200) {
                   if (connect.responseText == 1) {
-                    result = "<div class='alert alert-dismissible alert-success'> <button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Information!</h4> <p>Estamos redireccionandote (: )<a href='#' class='alert-link'></a>.</p>   </div>";
-
+                    result = "<div class='alert alert-dismissible alert-success'> <button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>Satisfactorio!</strong> <a href='#' class='alert-link'>Redireccionando...</div>";
                      __('_ajax_register_').innerHTML = result;
                      window.location.reload();
                   }else {
@@ -29,7 +28,7 @@ function StartReg(){
                   }
 
                 }else if(connect.readyState !=4){
-                  result = "<div class='alert alert-dismissible alert-info'> <button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Information!</h4> <p>Estamos validando tus datos (: )<a href='#' class='alert-link'></a>.</p>   </div>";
+                  result = "<div class='alert alert-dismissible alert-danger'> <button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>Información!</strong> <a href='#' class='alert-link'>Validando datos ingresados...</div>";
 
                  __('_ajax_register_').innerHTML = result;
                 }
@@ -39,18 +38,18 @@ function StartReg(){
             connect.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
             connect.send(form);
         }else{
-          result = "<div class='alert alert-dismissible alert-danger'> <button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Information!</h4> <p>Las contraseñas no coinciden<a href='#' class='alert-link'></a>.</p>   </div>";
+          result = "<div class='alert alert-dismissible alert-danger'> <button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>Oh oops!</strong> <a href='#' class='alert-link'>Las contraseñas no coinciden.</div>";
 
             __('_ajax_register_').innerHTML = result;
         }
       }else{
-        result = "<div class='alert alert-dismissible alert-danger'> <button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Information!</h4> <p>Llene sus datos<a href='#' class='alert-link'></a>.</p>   </div>";
+        result = "<div class='alert alert-dismissible alert-danger'> <button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>Oh oops!</strong> <a href='#' class='alert-link'>Debe Llenar los campos.</div>";
 
           __('_ajax_register_').innerHTML = result;
 
       }
     }else{
-      result = "<div class='alert alert-dismissible alert-danger'> <button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Information!</h4> <p>Acepte los terminos y condiciones<a href='#' class='alert-link'></a>.</p>   </div>";
+      result = "<div class='alert alert-dismissible alert-danger'> <button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>Oh oops!</strong> <a href='#' class='alert-link'>Debe aceptar los Terminos y Condiciones.</div>";
 
         __('_ajax_register_').innerHTML = result;
 

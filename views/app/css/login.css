@@ -6,31 +6,31 @@ html,body {
   /*height: 100%;*/
     overflow: hidden;
      margin: 0px;
-   
+
       width: 100%;
     height: 100%;
 }
 .body{
     top: 0;
     position: absolute;
-     
+
     width: 100%;
     height: 100%;
- 
+
      background-image: url("../img/campnou(optimized).jpg");
      background-size: cover;
-   
-   -webkit-filter: blur(2px);  
-       
+
+   -webkit-filter: blur(2px);
+
   color: #fff;
   font-family: "Comfortaa", "Helvetica", sans-serif;
-    
+
 }
- 
+
 .container {
     position: relative;
-    
-   
+
+
   padding: 1px 0;
   height: 100%;
   width: 100%;
@@ -38,7 +38,7 @@ html,body {
 
 .login {
   max-width: 280px;
-  min-height: 65%;
+  min-height: 80%;
   margin: 5% auto;
   background-color: rgba(10,10,10,.68);
 }
@@ -54,13 +54,13 @@ html,body {
 }
 
 .login-form {
-  padding: 8px 30px 20px;
+  padding: 8px 30px 30px ;
   height: 120px;
   width: 100%;
   /*background-color: green;*/
 }
 
- 
+
 
 .username-row {
   position: relative;
@@ -78,7 +78,7 @@ html,body {
   margin-bottom: 10px;
 }
 
- 
+
 .password-icon,
 .user-icon {
   margin: 5px;
@@ -192,7 +192,3 @@ p a:hover {
     stroke-dashoffset: 0;
   }
 }
-
-
-
-

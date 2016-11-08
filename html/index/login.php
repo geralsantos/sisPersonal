@@ -124,9 +124,9 @@ else
 <!-- Termina Mdal -->
 
 <div class="container">
-
+<div id="_ajax_login_"></div>
     <div id="login" class="login">
-    <div id="_ajax_login_"></div>
+
     <div role="form" onkeypress="ScriptLogin(event);">
     <div class="login-icon-field">
 
@@ -175,6 +175,7 @@ else
     </div>
 </div>
 </div>
+
 </body>
 
 <link rel="stylesheet" href="<?php echo VIEWS_DIR; ?>app/css/login.css"/>

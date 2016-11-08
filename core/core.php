@@ -4,8 +4,8 @@ session_start();
 //Constantes de la conexion
 
 define ('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
+define('DB_USER','poma');
+define('DB_PASS','123');
 define('DB_NAME','dbforo');
 
 //Constantes de la pagina
@@ -14,7 +14,7 @@ define('HTML_DIR','html/');
 define('VIEWS_DIR','views/');
 define('FONTS_DIR','fonts/');
 define('PUBLIC_DIR','public/');
-define('APP_URL','http://localhost/lavanderiaPHP/');
+define('APP_URL','http://localhost/sisPersonal/');
 
 //PHPMailer smtp.gmail.com
 define('PHPMAILER_HOST','smtp-mail.outlook.com');
