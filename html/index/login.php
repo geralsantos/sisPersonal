@@ -1,16 +1,19 @@
 <?php
 //if ( isset($_SESSION['app_id']) or isset($_COOKIE['mypage_log']))
- 
+
 if(( isset($_SESSION['app_id']) or isset($_COOKIE['mypage_log']) ))
 {
-
-  header('location: index.php?view='. md5('home').'');
+//echo "header home";
+echo $_SESSION['app_id'] ."<br>";
+echo $_COOKIE['mypage_log']."<br>";
+  //header('location: index.php?view='. md5('home').'');
 
 }
 
 else
 {
-
+echo md5("login"). "<br>";
+echo md5("home");
 
 ?>
 <!DOCTYPE html>
