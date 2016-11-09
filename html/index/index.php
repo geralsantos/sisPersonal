@@ -2,11 +2,9 @@
 //if(!( isset($_SESSION['app_id']) or isset($_COOKIE['mypage_log']) or $usu[$_SESSION['app_id']] ))
 //or ($usu[$_COOKIE['mypage_log']])==""
 
-if(! (isset($_SESSION['app_id']) || isset($_COOKIE['mypage_log']) ))
+if(!(isset($_SESSION['app_id']) || isset($_COOKIE['mypage_log'])))
 {
-  echo $_SESSION['app_id'] ."<br>";
-  echo $_COOKIE['mypage_log']."<br>";
-  echo "login";
+
 header('location: index.php?view='. md5('login').'');
 }
 else
@@ -64,7 +62,7 @@ else
                   <span class="hidden-xs">
                  <?php
                   try {
-                    $log = $usu[isset($_SESSION['app_id']) ? $_SESSION['app_id'] : $_COOKIE['mypage_log']]['usuario'];
+                    $log = $usu[isset($_SESSION['app_id']) ? $_SESSION['app_id'] : $_COOKIE['mypage_log']]['user'];
                         if (!$log){
                            throw new Exception();
 
@@ -174,7 +172,7 @@ else
               <?php
                 try {
 
-                  if(($usu[isset($_SESSION['app_id']) ? $_SESSION['app_id'] : $_COOKIE['mypage_log']]['tipo']) == "Administrador"  )
+                  if(($usu[isset($_SESSION['app_id']) ? $_SESSION['app_id'] : $_COOKIE['mypage_log']]['permisos']) == "2"  )
                   {
                       echo "  <li class='treeview'>
                           <a href='#'>
@@ -194,8 +192,6 @@ else
                 }
 
                ?>
-
-
 
              <li>
               <a href="#">

@@ -19,15 +19,15 @@ if ($result){
 
   if($_POST['sesion']=="true"){
    setcookie("mypage_log",$result["id"],time()+(60*60*24));
-   echo "setcookie";
+
     } else{
        //setcookie("mypage_log","",time()+0);
-       setcookie("mypage_log",$result["id"],time()+(60*60*24));
+
          $_SESSION['app_id'] = $result["id"];
-         echo "session";
+
     }
 
- //echo 1;
+ echo 1;
 
 }else{
 
@@ -37,14 +37,14 @@ if ($result){
 </div>";
 
 }
-  // $db = null;
+   $db = null;
  }else{
     echo "<div class='alert alert-dismissible alert-danger'>
   <button type='button' class='close' data-dismiss='alert'>&times;</button>
   <strong>Oh Shet t_t!</strong> <a href='#' class='alert-link'>Debe Llenar los datos.
 </div>";
 
-    // $db = null;
+    $db = null;
 }
 
 

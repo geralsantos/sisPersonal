@@ -3,17 +3,14 @@
 
 if(( isset($_SESSION['app_id']) or isset($_COOKIE['mypage_log']) ))
 {
-//echo "header home";
-echo $_SESSION['app_id'] ."<br>";
-echo $_COOKIE['mypage_log']."<br>";
-  //header('location: index.php?view='. md5('home').'');
+
+  header('location: index.php?view='. md5('home').'');
 
 }
 
 else
 {
-echo md5("login"). "<br>";
-echo md5("home");
+
 
 ?>
 <!DOCTYPE html>
