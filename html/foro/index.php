@@ -9,6 +9,6 @@ echo "activado";
 echo "Error al intentar activarte" ;
 
 }
-echo "esto es el foro :V" ;
+echo "esto es el principal :V" ;
 
  ?>
