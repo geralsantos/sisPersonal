@@ -12,58 +12,71 @@ echo "Error al intentar activarte" ;
 echo "esto es el principal :V" ;
 
  ?>
- 
+
  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
- <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
- <script type="text/javascript">
- $(function () {
-     Highcharts.chart('container', {
-         title: {
-             text: 'Monthly Average Temperature',
-             x: -20 //center
-         },
-         subtitle: {
-             text: 'Source: WorldClimate.com',
-             x: -20
-         },
-         xAxis: {
-             categories: [1,2,3,4,5,6,7]
-         },
-         yAxis: {
-             title: {
-                 text: 'Temperature (°C)'
+
+  <script type="text/javascript">
+  $(function () {
+     $.getJSON('json.json', function (data) {
+
+         Highcharts.chart('container', {
+             chart: {
+                 zoomType: 'x'
              },
-             plotLines: [{
-                 value: 0,
-                 width: 1,
-                 color: '#808080'
+             title: {
+                 text: 'USD to EUR exchange rate over time'
+             },
+             subtitle: {
+                 text: document.ontouchstart === undefined ?
+                         'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+             },
+             xAxis: {
+                 type: 'datetime'
+             },
+             yAxis: {
+                 title: {
+                     text: 'Exchange rate'
+                 }
+             },
+             legend: {
+                 enabled: false
+             },
+             plotOptions: {
+                 area: {
+                     fillColor: {
+                         linearGradient: {
+                             x1: 0,
+                             y1: 0,
+                             x2: 0,
+                             y2: 1
+                         },
+                         stops: [
+                             [0, Highcharts.getOptions().colors[0]],
+                             [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                         ]
+                     },
+                     marker: {
+                         radius: 2
+                     },
+                     lineWidth: 1,
+                     states: {
+                         hover: {
+                             lineWidth: 1
+                         }
+                     },
+                     threshold: null
+                 }
+             },
+
+             series: [{
+                 type: 'area',
+                 name: 'USD to EUR',
+                 data: data
              }]
-         },
-         tooltip: {
-             valueSuffix: '°C'
-         },
-         legend: {
-             layout: 'vertical',
-             align: 'right',
-             verticalAlign: 'middle',
-             borderWidth: 0
-         },
-         series: [{
-             name: 'Tokyo',
-             data: [7.0,0,2]
-         }, {
-             name: 'New York',
-             data: [-0.2]
-         }, {
-             name: 'Berlin',
-             data: [-0.9]
-         }, {
-             name: 'London',
-             data: [3.9]
-         }]
+         });
      });
  });
 

@@ -33,6 +33,7 @@ else
     <script type="text/javascript" src="<?php echo PUBLIC_DIR ?>app/js/highcharts/highcharts.js"></script>
     <script src="<?php echo PUBLIC_DIR ?>app/js/highcharts/data.js"></script>
     <script src="<?php echo PUBLIC_DIR ?>app/js/highcharts/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
