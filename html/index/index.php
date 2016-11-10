@@ -40,7 +40,7 @@ else
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="?view=index" class="logo">
+        <a href="?view=home" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>sis</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -244,7 +244,7 @@ else
                               <div class="contenido_html">
 		                          <!--Contenido-->
 		                    <?php
-                          include(HTML_DIR."foro/index.php"); /*if(isset($_GET['view']) and $_GET['view']=='categoria'){
+                          include(HTML_DIR."blade/index.php"); /*if(isset($_GET['view']) and $_GET['view']=='categoria'){
                                     include(HTML_DIR.'almacen/categoria/index.php');
                             }else{
                                      include(HTML_DIR.'index/main.php');

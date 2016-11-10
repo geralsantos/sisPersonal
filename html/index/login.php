@@ -178,9 +178,9 @@ else
 
 </body>
 
-<link rel="stylesheet" href="<?php echo VIEWS_DIR; ?>app/css/login.css"/>
-<script type="text/javascript" src="<?php echo VIEWS_DIR?>app/js/login.js" ></script>
-<script type="text/javascript" src="<?php echo VIEWS_DIR?>app/js/register.js" ></script>
+<link rel="stylesheet" href="<?php echo PUBLIC_DIR; ?>app/css/login.css"/>
+<script type="text/javascript" src="<?php echo PUBLIC_DIR?>app/js/login.js" ></script>
+<script type="text/javascript" src="<?php echo PUBLIC_DIR?>app/js/register.js" ></script>
 </html>
 <?php
 }
