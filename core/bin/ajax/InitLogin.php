@@ -1,6 +1,7 @@
 <?php
 
 $db = new Conexion();
+
 if (!empty($_POST['user']) and !empty($_POST['pass']))
 {
 

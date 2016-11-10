@@ -26,7 +26,6 @@ function usuarios(){
         $keys = array_keys($result);
         if ($result){
         foreach ($result as $row) {
-
           foreach ($keys as $key)
           $usuarios[$row['id']] = array(
             'id' =>  $row['id'],

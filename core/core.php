@@ -7,11 +7,12 @@ define ('DB_HOST','localhost');
 define('DB_USER','poma');
 define('DB_PASS','123');
 define('DB_NAME','dbforo');
+define('DB_NAME2','dbventaslaravel');
 
 //Constantes de la pagina
 define("APP_TITLE","Foro nombre");
 define('HTML_DIR','html/');
- 
+
 define('FONTS_DIR','fonts/');
 define('PUBLIC_DIR','public/');
 //define('APP_URL','http://localhost/sisPersonal/');
