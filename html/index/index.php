@@ -19,6 +19,7 @@ else
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
+    <script src="<?php echo PUBLIC_DIR ?>js/jQuery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="<?php echo PUBLIC_DIR ?>css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo PUBLIC_DIR ?>css/font-awesome.css">
@@ -29,7 +30,9 @@ else
     <link rel="stylesheet" href="<?php echo PUBLIC_DIR; ?>css/_all-skins.min.css">
     <link rel="apple-touch-icon" href="<?php echo PUBLIC_DIR; ?>img/apple-touch-icon.png">
     <link rel="shortcut icon" href="<?php echo PUBLIC_DIR; ?>img/favicon.ico">
-
+    <script type="text/javascript" src="<?php echo PUBLIC_DIR ?>app/js/highcharts/highcharts.js"></script>
+    <script src="<?php echo PUBLIC_DIR ?>app/js/highcharts/data.js"></script>
+    <script src="<?php echo PUBLIC_DIR ?>app/js/highcharts/drilldown.js"></script>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -276,8 +279,8 @@ else
     <!-- AdminLTE App -->
     <script src="<?php echo PUBLIC_DIR; ?>js/app.min.js"></script>
 
-          <script src="<?php echo VIEWS_DIR; ?>app/js/login.js"></script>
-          <script src="<?php echo VIEWS_DIR; ?>app/js/sideBar.js"></script>
+          <script src="<?php echo PUBLIC_DIR; ?>app/js/login.js"></script>
+          <script src="<?php echo PUBLIC_DIR; ?>app/js/sideBar.js"></script>
 
   </body>
 </html>

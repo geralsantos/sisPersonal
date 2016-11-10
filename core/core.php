@@ -11,7 +11,7 @@ define('DB_NAME','dbforo');
 //Constantes de la pagina
 define("APP_TITLE","Foro nombre");
 define('HTML_DIR','html/');
-define('VIEWS_DIR','views/');
+ 
 define('FONTS_DIR','fonts/');
 define('PUBLIC_DIR','public/');
 //define('APP_URL','http://localhost/sisPersonal/');
