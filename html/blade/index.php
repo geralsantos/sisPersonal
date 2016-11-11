@@ -147,8 +147,8 @@ echo "esto es el principal :V <br><br>";
 
 
  <script type="text/javascript">
- var f = function (ingreso_total) {
-
+ var f = function (ingreso_total,anios,meses) {
+  // console.log(meses);
      // Create the chart
      Highcharts.chart('container1', {
          chart: {
@@ -202,77 +202,22 @@ echo "esto es el principal :V <br><br>";
          }],
          drilldown: {
             series: [
-            /*  {
-                id: 'ingresos',
-                name: 'Ingreso anual',
-                data: [<?php
-                  $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2016-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso limit 1;');
-                  $sql->execute();
-                  $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-                  foreach ($result as $key) {
-                    ?>
-                    <?php  print_r("{ name:'".$key["anio"]."', y:'".$key['compra']."', drilldown:'ingresos'}"); ?>
-
-                    <?php  } ?>
-
-                ]
-            }, {
-                name: 'Cats',
-                id: 'ventas',
-                data: [1]
-            },*/
             {
               //Filtro en año seleccionado en el datepicker
               id: 'anios',
               name: 'Año',
-              data: [
-                <?php
-                $fecha_buscada = isset($_POST["fecha"])?$_POST["fecha"]:"2016-02-02";
-
-                 $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST(:fecha_buscada AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
-                 $sql->bindParam(":fecha_buscada",$fecha_buscada);
-                 $sql->execute();
-                  $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-                  foreach ($result as $key) {
-                    ?>
-                    <?php  print_r("{ name:'".$key["anio"]."', y:".$key['compra'].", drilldown:'meses'},"); ?>
-
-                    <?php  } ?>
-
-              ]
+              data: anios
           },
-          {
+
             //Filtro en Meses del año seleccionado
-            id: 'meses',
+            meses
+            /*id: 'meses',
             name: 'Meses',
-            data: [
-              <?php
-                $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%M") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
-                $sql->execute();
-                $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($result as $key) {
-                  $meses = array ('January','February','March','April','May','June','July','August','September','October','November','December');
-                  $meses_es = array ('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre');
-                    $es= "";
-                     for ($i=0; $i < count($meses) ; $i++) {
-                       if ($key["anio"] == $meses[$i]) {
-                      $es = $meses_es[$i];
-                       }
-                     }
-
-                  ?>
-                  <?php    print_r("{ name:'".$es."', y:".$key['compra'].", drilldown:'meses'},");?>
-
-                  <?php  } ?>
-            /*{ name: 'Enero', y: 1, drilldown: 'Enero' },
-            {name:'Febrero',y:2,drilldown:'Febrero'},
-            {name:'Marzo',y:3,drilldown:'Marzo'},
-            */
-            ]
+            data: meses*/
             /*  name: '2014',
               id: '2014',
               data: [1]*/
-          },
+          ,
           {
             //Filtro en Meses del año seleccionado
             id: '2015',
@@ -292,15 +237,21 @@ echo "esto es el principal :V <br><br>";
    var ajax_load_highchart = (function (){
 
      $.ajax({
-       url: 'index.php?view=highchart_bar&fecha',
+       url: 'index.php?view=highchart_bar&fecha=2012-02-02',
        type:'POST',
        beforeSend:function(){
 
        },
        success:function(response){
-        var stack = $.Callbacks();
-         stack.add(f);
-         stack.fire(parseInt(response));
+           console.log(response);
+         var json_parse = JSON.parse(response);
+           console.log(json_parse.ingreso_total);
+           console.log(json_parse.anios);
+            console.log(json_parse.id);
+         var stack = $.Callbacks();
+           stack.add(f);
+           stack.fire(parseInt(json_parse.ingreso_total), json_parse.anios,json_parse.id );
+
        }
 
      });
