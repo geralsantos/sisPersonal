@@ -147,8 +147,7 @@ echo "esto es el principal :V <br><br>";
 
 
  <script type="text/javascript">
- var f = function (fecha) {
-
+ var f = function (ingreso_total) {
 
      // Create the chart
      Highcharts.chart('container1', {
@@ -193,7 +192,7 @@ echo "esto es el principal :V <br><br>";
              colorByPoint: true,
              data: [{
                  name: 'Ingresos',
-                 y: <?php include("html/blade/highchart_bar.php")?>,
+                 y: ingreso_total,
                  drilldown: 'anios'
              }, {
                  name: 'Ventas',
@@ -283,24 +282,34 @@ echo "esto es el principal :V <br><br>";
             {name:'Marzo',y:3,drilldown:'Marzo'},
             ]
 
-
           }
-
-
-
          ]
 
         }
      });
  };
  $(document).ready(function(){
-   f();
- //column-drilldown
+   var ajax_load_highchart = (function (){
 
+     $.ajax({
+       url: 'index.php?view=highchart_bar&fecha',
+       type:'POST',
+       beforeSend:function(){
+
+       },
+       success:function(response){
+        var stack = $.Callbacks();
+         stack.add(f);
+         stack.fire(parseInt(response));
+       }
+
+     });
+   })();
                $('#fecha').datepicker({
                  language:'es',
                  showWeek: true,
                  firstDay: 1
+
 
                }).on('changeDate',function(ev){
 
@@ -308,18 +317,16 @@ echo "esto es el principal :V <br><br>";
                  dateString =(d.getFullYear())+"-"+(d.getMonth()+1)+"-"+ d.getDate();
 
                 $.ajax({
-                  //data: dateString,
                   url: 'index.php?view=highchart_bar&fecha='+dateString,
                   type:'POST',
                   beforeSend:function(){
 
                   },
                   success:function(response){
-                     console.log(response);
-
-                    var stack = $.Callbacks();
+                   //console.log(response);
+                   var stack = $.Callbacks();
                     stack.add(f);
-                    stack.fire(dateString);
+                    stack.fire(parseInt(response));
                   }
 
                 });
