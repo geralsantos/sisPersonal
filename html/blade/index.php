@@ -193,7 +193,7 @@ echo "esto es el principal :V <br><br>";
              colorByPoint: true,
              data: [{
                  name: 'Ingresos',
-                 y: <?php include("highchart_bar.php")?>,
+                 y: <?php include("html/blade/highchart_bar.php")?>,
                  drilldown: 'anios'
              }, {
                  name: 'Ventas',
@@ -309,7 +309,7 @@ echo "esto es el principal :V <br><br>";
 
                 $.ajax({
                   //data: dateString,
-                  url: 'highchart_bar.php?fecha='+dateString,
+                  url: 'index.php?view=highchart_bar&fecha='+dateString,
                   type:'POST',
                   beforeSend:function(){
 

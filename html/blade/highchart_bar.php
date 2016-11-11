@@ -1,7 +1,9 @@
 <?php
 
-$db = new Conexion_laravel_mysql();
 
+//include ('core/models/ConexionMYSQL.php');
+
+$db = new Conexion_laravel_mysql();
 $fecha_buscada =isset($_POST["fecha"]);
 
 if ($fecha_buscada) {
