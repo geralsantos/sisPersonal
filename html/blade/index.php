@@ -12,6 +12,21 @@ echo "Error al intentar activarte" ;
 echo "esto es el principal :V <br><br>";
 
   $db = new Conexion_laravel_mysql();
+
+  $fecha_buscada = isset($_POST["fecha"]);
+  if ($fecha_buscada) {
+    echo $fecha_buscada;
+    return $fecha_buscada;
+  }else {
+    echo false;
+  }
+  /*
+   $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST(:fecha_buscada AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
+   $sql->bindParam(":fecha_buscada",$fecha_buscada);
+   $sql->execute();
+    $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($result as $key) {
+     print_r("{ name:'".$key["anio"]."', y:".$key['compra'].", drilldown:'meses'},");   }*/
 /*
     $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%M") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
     $sql->execute();
@@ -36,7 +51,6 @@ echo "esto es el principal :V <br><br>";
  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
 
   <script type="text/javascript">
   $(function () {
@@ -133,8 +147,9 @@ echo "esto es el principal :V <br><br>";
 
 
  <script type="text/javascript">
- //column-drilldown
- $(function () {
+ var f = function (fecha) {
+
+
      // Create the chart
      Highcharts.chart('container1', {
          chart: {
@@ -178,17 +193,7 @@ echo "esto es el principal :V <br><br>";
              colorByPoint: true,
              data: [{
                  name: 'Ingresos',
-                 y: <?php
-                 $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE)');
-                 $sql->execute();
-                 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-                 foreach ($result as $key) {
-
-                     ?>
-                     <?php $encode = (json_encode($key["compra"])); ?>
-
-                     <?php print_r(json_decode($encode)); ?>
-                     <?php  } ?>,
+                 y: <?php include("highchart_bar.php")?>,
                  drilldown: 'anios'
              }, {
                  name: 'Ventas',
@@ -202,7 +207,7 @@ echo "esto es el principal :V <br><br>";
                 id: 'ingresos',
                 name: 'Ingreso anual',
                 data: [<?php
-                  $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso limit 1;');
+                  $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2016-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso limit 1;');
                   $sql->execute();
                   $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                   foreach ($result as $key) {
@@ -223,17 +228,17 @@ echo "esto es el principal :V <br><br>";
               name: 'Año',
               data: [
                 <?php
-                  $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
-                  $sql->execute();
+                $fecha_buscada = isset($_POST["fecha"])?$_POST["fecha"]:"2016-02-02";
+
+                 $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST(:fecha_buscada AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
+                 $sql->bindParam(":fecha_buscada",$fecha_buscada);
+                 $sql->execute();
                   $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                   foreach ($result as $key) {
                     ?>
                     <?php  print_r("{ name:'".$key["anio"]."', y:".$key['compra'].", drilldown:'meses'},"); ?>
 
                     <?php  } ?>
-              /*  { name: '2014', y: 4, drilldown: '2014' },
-              {name:'2015',y:5,drilldown:'2015'},
-              {name:'2016',y:6,drilldown:'2016'},*/
 
               ]
           },
@@ -287,5 +292,41 @@ echo "esto es el principal :V <br><br>";
 
         }
      });
- });
+ };
+ $(document).ready(function(){
+   f();
+ //column-drilldown
+
+               $('#fecha').datepicker({
+                 language:'es',
+                 showWeek: true,
+                 firstDay: 1
+
+               }).on('changeDate',function(ev){
+
+                 var d =new Date(Date.parse(ev.date));
+                 dateString =(d.getFullYear())+"-"+(d.getMonth()+1)+"-"+ d.getDate();
+
+                $.ajax({
+                  //data: dateString,
+                  url: 'highchart_bar.php?fecha='+dateString,
+                  type:'POST',
+                  beforeSend:function(){
+
+                  },
+                  success:function(response){
+                     console.log(response);
+
+                    var stack = $.Callbacks();
+                    stack.add(f);
+                    stack.fire(dateString);
+                  }
+
+                });
+
+
+               });
+           });
+
+
  </script>

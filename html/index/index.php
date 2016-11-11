@@ -277,40 +277,39 @@ else
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo PUBLIC_DIR; ?>js/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
+
     <script src="<?php echo PUBLIC_DIR ?>js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo PUBLIC_DIR; ?>js/app.min.js"></script>
 
-          <script src="<?php echo PUBLIC_DIR; ?>app/js/login.js"></script>
-          <script src="<?php echo PUBLIC_DIR; ?>app/js/sideBar.js"></script>
+    <script src="<?php echo PUBLIC_DIR; ?>app/js/login.js"></script>
+    <script src="<?php echo PUBLIC_DIR; ?>app/js/sideBar.js"></script>
+    <link rel="stylesheet" href="<?php echo PUBLIC_DIR; ?>app/css/bootstrap-datepicker.min.css" />
+    <script src="<?php echo PUBLIC_DIR; ?>app/js/bootstrap-datepicker.min.js"></script>
 
-          <link rel="stylesheet" href="<?php echo PUBLIC_DIR; ?>app/css/bootstrap-datepicker.min.css" />
-          <script src="<?php echo PUBLIC_DIR; ?>app/js/bootstrap-datepicker.min.js"></script>
-          <script>
-          /**
- * Spanish translation for bootstrap-datepicker
- * Bruno Bonamin <bruno.bonamin@gmail.com>
- */
-          ;(function($){
-          	$.fn.datepicker.dates['es'] = {
-          		days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-          		daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-          		daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
-          		months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-          		monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-          		today: "Hoy",
-          		monthsTitle: "Meses",
-          		clear: "Borrar",
-          		weekStart: 1,
-          		format: "yyyy-mm-dd"
-          	};
-          }(jQuery));
-          $( document ).ready(function() {
-              $('#fecha').datepicker({
-                language:'es'
-              });
-          });
-          </script>
+    <script type="text/javascript">
+
+               ;(function($){
+                $.fn.datepicker.dates['es'] = {
+                  days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+                  daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+                  daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                  months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                  monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                  today: "Hoy",
+                  monthsTitle: "Meses",
+                  clear: "Borrar",
+                  weekStart: 1,
+                  format: "yyyy-mm-dd"
+                };
+               }(jQuery));
+               $('#fecha').datepicker({
+
+                 language:'es',
+                 showWeek: true,
+                 firstDay: 1
+               });
+    </script>
 
   </body>
 </html>
