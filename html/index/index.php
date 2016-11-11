@@ -34,6 +34,7 @@ else
     <script src="<?php echo PUBLIC_DIR ?>app/js/highcharts/data.js"></script>
     <script src="<?php echo PUBLIC_DIR ?>app/js/highcharts/drilldown.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -282,6 +283,34 @@ else
 
           <script src="<?php echo PUBLIC_DIR; ?>app/js/login.js"></script>
           <script src="<?php echo PUBLIC_DIR; ?>app/js/sideBar.js"></script>
+
+          <link rel="stylesheet" href="<?php echo PUBLIC_DIR; ?>app/css/bootstrap-datepicker.min.css" />
+          <script src="<?php echo PUBLIC_DIR; ?>app/js/bootstrap-datepicker.min.js"></script>
+          <script>
+          /**
+ * Spanish translation for bootstrap-datepicker
+ * Bruno Bonamin <bruno.bonamin@gmail.com>
+ */
+          ;(function($){
+          	$.fn.datepicker.dates['es'] = {
+          		days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+          		daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+          		daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+          		months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+          		monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+          		today: "Hoy",
+          		monthsTitle: "Meses",
+          		clear: "Borrar",
+          		weekStart: 1,
+          		format: "yyyy-mm-dd"
+          	};
+          }(jQuery));
+          $( document ).ready(function() {
+              $('#fecha').datepicker({
+                language:'es'
+              });
+          });
+          </script>
 
   </body>
 </html>

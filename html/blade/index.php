@@ -9,24 +9,30 @@ echo "activado";
 echo "Error al intentar activarte" ;
 
 }
-echo "esto es el principal :V" ;
+echo "esto es el principal :V <br><br>";
 
   $db = new Conexion_laravel_mysql();
-
-    $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", d.idingreso FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora >= CAST("2014-02-01" AS DATE) ');
-
-    //$sql = $db->__construct()->prepare("SELECT SUM(d.precio_compra) FROM ingreso i,detalle_ingreso d "+
-          //                              "WHERE i.idingreso = d.idingreso GROUP BY (d.idingreso)"  );
+/*
+    $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%M") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
     $sql->execute();
-    $result = $sql->fetch(PDO::FETCH_ASSOC);
-    foreach ($result as $key) {
-     $encode = (json_encode($key));
 
-     print_r(json_decode($encode));
-        }
+    $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+    $meses = array ('January','February','March','April','May','June','July','August','September','October','November','December');
+    $meses_es = array ('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre');
+      $es= "";
+    foreach ($result as $key) {
+       for ($i=0; $i < count($meses) ; $i++) {
+         if ($key["anio"] == $meses[$i]) {
+        $es = $meses_es[$i];
+         }
+       }
+
+      print_r("{ name:'".$es."', y:".$key['compra'].", drilldown:'meses'},");
+
+    }*/
 
   ?>
-
+<input type="text" id="fecha" name="fecha" />
  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -125,6 +131,7 @@ echo "esto es el principal :V" ;
  </script>
 
 
+
  <script type="text/javascript">
  //column-drilldown
  $(function () {
@@ -172,67 +179,111 @@ echo "esto es el principal :V" ;
              data: [{
                  name: 'Ingresos',
                  y: <?php
+                 $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE)');
+                 $sql->execute();
+                 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+                 foreach ($result as $key) {
 
-                   $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", d.idingreso FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora >= CAST("2014-02-01" AS DATE)');
-
-                   //$sql = $db->__construct()->prepare("SELECT SUM(d.precio_compra) FROM ingreso i,detalle_ingreso d "+
-                         //                              "WHERE i.idingreso = d.idingreso GROUP BY (d.idingreso)"  );
-                   $sql->execute();
-                   $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-                   foreach ($result as $key) {
                      ?>
                      <?php $encode = (json_encode($key["compra"])); ?>
 
                      <?php print_r(json_decode($encode)); ?>
                      <?php  } ?>,
-                 drilldown: 'Anios'
+                 drilldown: 'anios'
              }, {
                  name: 'Ventas',
                  y: 24.03,
-                 drilldown: 'Chrome'
+                 drilldown: 'ventas'
              } ]
          }],
          drilldown: {
             series: [
-              {
-                id: 'Anios',
-                name: 'Año',
-                data: [{
-                    name: 'Cats',
-                    y: 4,
-                    drilldown: 'cats'
-                },
-                {
-                  name:'Dogs',
-                  y :3,
-                  drilldown:'Dogs'
-                }
+            /*  {
+                id: 'ingresos',
+                name: 'Ingreso anual',
+                data: [<?php
+                  $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso limit 1;');
+                  $sql->execute();
+                  $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+                  foreach ($result as $key) {
+                    ?>
+                    <?php  print_r("{ name:'".$key["anio"]."', y:'".$key['compra']."', drilldown:'ingresos'}"); ?>
+
+                    <?php  } ?>
+
                 ]
             }, {
                 name: 'Cats',
-                id: 'cats',
+                id: 'ventas',
                 data: [1]
-            },
+            },*/
             {
-              id: 'Chrome',
-              name: 'Animals2',
-              data: [{
-                  name: 'Cats2',
-                  y: 4,
-                  drilldown: 'cats2'
-              }, ['Dogs', 2],
+              //Filtro en año seleccionado en el datepicker
+              id: 'anios',
+              name: 'Año',
+              data: [
+                <?php
+                  $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%Y") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
+                  $sql->execute();
+                  $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+                  foreach ($result as $key) {
+                    ?>
+                    <?php  print_r("{ name:'".$key["anio"]."', y:".$key['compra'].", drilldown:'meses'},"); ?>
 
-                  ['Pigs', 1]
+                    <?php  } ?>
+              /*  { name: '2014', y: 4, drilldown: '2014' },
+              {name:'2015',y:5,drilldown:'2015'},
+              {name:'2016',y:6,drilldown:'2016'},*/
+
               ]
           },
           {
-              name: 'Cats2',
-              id: 'cats2',
-              data: [1]
+            //Filtro en Meses del año seleccionado
+            id: 'meses',
+            name: 'Meses',
+            data: [
+              <?php
+                $sql =$db->__construct()->prepare('SELECT SUM(d.precio_compra) as "compra", DATE_FORMAT(i.fecha_hora, "%M") as "anio" FROM ingreso i,detalle_ingreso d WHERE d.idingreso = i.idingreso AND i.fecha_hora BETWEEN CAST("2012-02-02" AS DATE) AND CAST(SYSDATE() as DATE) GROUP BY d.idingreso');
+                $sql->execute();
+                $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result as $key) {
+                  $meses = array ('January','February','March','April','May','June','July','August','September','October','November','December');
+                  $meses_es = array ('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre');
+                    $es= "";
+                     for ($i=0; $i < count($meses) ; $i++) {
+                       if ($key["anio"] == $meses[$i]) {
+                      $es = $meses_es[$i];
+                       }
+                     }
+
+                  ?>
+                  <?php    print_r("{ name:'".$es."', y:".$key['compra'].", drilldown:'meses'},");?>
+
+                  <?php  } ?>
+            /*{ name: 'Enero', y: 1, drilldown: 'Enero' },
+            {name:'Febrero',y:2,drilldown:'Febrero'},
+            {name:'Marzo',y:3,drilldown:'Marzo'},
+            */
+            ]
+            /*  name: '2014',
+              id: '2014',
+              data: [1]*/
+          },
+          {
+            //Filtro en Meses del año seleccionado
+            id: '2015',
+            name: 'Meses',
+            data: [{ name: 'Enero', y: 1, drilldown: 'Enero' },
+            {name:'Febrero',y:2,drilldown:'Febrero'},
+            {name:'Marzo',y:3,drilldown:'Marzo'},
+            ]
+
+
           }
 
 
-          ]
+
+         ]
 
         }
      });
