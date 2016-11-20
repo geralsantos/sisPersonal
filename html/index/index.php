@@ -306,8 +306,12 @@ else
                $('#fecha').datepicker({
 
                  language:'es',
-                 showWeek: true,
-                 firstDay: 1
+                 calendarWeeks: true,
+                 firstDay: 1,
+                 todayHighlight:true,
+                 "setDate": new Date("2016-02-02"),
+                 "autoclose": true
+
                });
     </script>
 
