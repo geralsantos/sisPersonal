@@ -28,8 +28,6 @@ echo "esto es el principal :V <br><br>";
    <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 
-
-
    <script type="text/javascript">
    var f = {
        // Create the chart
@@ -100,7 +98,6 @@ echo "esto es el principal :V <br><br>";
 
    $(document).ready(function(){
 
-
      var ajax_load_highchart = (function (date){
 
        $.ajax({
@@ -144,7 +141,9 @@ echo "esto es el principal :V <br><br>";
 
        });
      });
+
       ajax_load_highchart("");
+
                  $('#fecha').datepicker({
 
                  }).on('changeDate',function(ev){
@@ -154,19 +153,6 @@ echo "esto es el principal :V <br><br>";
                    console.log(dateString);
                    ajax_load_highchart(dateString);
 
-                /*  $.ajax({
-                    url: 'index.php?view=highchart_bar&fecha='+dateString,
-                    type:'POST',
-                    beforeSend:function(){
-
-                    },
-                    success:function(response){
-                     //console.log(response);
-                    ajax_load_highchart(dateString);
-                    }
-
-                  });
-*/
 
                 });
              });
